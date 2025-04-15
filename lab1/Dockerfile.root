@@ -1,0 +1,12 @@
+FROM alpine:3.21.3
+
+WORKDIR /app
+
+#USER root
+RUN apk add --no-cache nginx && ln -s /etc/nginx /app/nginx
+
+EXPOSE 8080
+VOLUME /app/nginx
+#ENTRYPOINT ["/bin/ash", "-c"]
+CMD ["nginx", "-g", "daemon off;"]
+

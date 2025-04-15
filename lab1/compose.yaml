@@ -1,0 +1,16 @@
+services:
+
+  mynginx:
+    build:
+      context: .
+      args:
+        - USER=101
+        - GROUP=101
+      dockerfile: Dockerfile
+      tags:
+        - "mynginx:250414-alpine3.21.3"
+    ports:
+      - 8080:8080/tcp
+    volumes:
+      - "./nginx/http.d:/etc/nginx/http.d"
+      - "./nginx/sites-enabled:/etc/nginx/sites-enabled"

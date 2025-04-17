@@ -7,12 +7,12 @@ ARG GID=101
 
 #Creating unprivileged system user and forwarding logs to docker output
 RUN set -x \
-      && mkdir -p /var/cache/nginx \
-      && addgroup -g $GID -S nginx \
-      && adduser -S -D -H -u $UID -h /var/cache/nginx -s /sbin/nologin -G nginx -g nginx nginx \
-      && apk add --no-cache nginx \
-      && ln -sf /dev/stdout /var/log/nginx/access.log \
-      && ln -sf /dev/stderr /var/log/nginx/error.log
+    && mkdir -p /var/cache/nginx \
+    && addgroup -g $GID -S nginx \
+    && adduser -S -D -H -u $UID -h /var/cache/nginx -s /sbin/nologin -G nginx -g nginx nginx \
+    && apk add --no-cache nginx \
+    && ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
 
 #Implementing changes to run nginx as unprivileged user
 RUN set -x \

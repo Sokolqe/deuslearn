@@ -6,10 +6,11 @@ ARG UID=101
 ARG GID=101
 ARG USERNAME=djangogirls
 ARG GROUPNAME=djangogirls
+
+#Add environment variables for our app
 ARG user
 ARG email
 ARG password
-
 ENV user=admin
 ENV email=admin@example.com
 ENV password=pass
@@ -20,18 +21,21 @@ COPY --chown=$UID:$GID requirements.txt /app/
 
 #Creating unprivileged system user and installing necessary requirements
 RUN set -x \
-    && addgroup -g $GID -S djangogirls \
-    && adduser -S -D -H -u $UID -h /app -s /sbin/nologin -G djangogirls -g djangogirls djangogirls \
+    && addgroup -g $GID -S $GROUPNAME \
+    && adduser -S -D -H -u $UID -h /app -s /sbin/nologin -G $GROUPNAME -g $GROUPNAME $USERNAME \
     && python -m pip install -r requirements.txt
 
+#Bringing source code
 COPY --chown=$UID:$GID . /app/
 
 EXPOSE "8000/tcp"
 
-#Bringing configuration file and static content from host machine inside container
+#Database directory
 VOLUME "/app/db" 
 
-#Run command without spawning worker processes
+USER $UID
+
+#Run command
 ENTRYPOINT ["/bin/ash"]
 CMD ["init.sh"]
 

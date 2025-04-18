@@ -11,9 +11,11 @@ ARG GROUPNAME=djangogirls
 ARG user
 ARG email
 ARG password
+ARG file
 ENV user=admin
 ENV email=admin@example.com
 ENV password=pass
+ENV file=/app/db/db.sqlite3
 
 WORKDIR /app
 

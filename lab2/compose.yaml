@@ -1,0 +1,34 @@
+services:
+
+  mydjangogirls_migration:
+    build:
+      context: .
+      args:
+        - USERNAME=101
+        - GROUPNAME=101
+        - user=admin
+        - password=pass
+        - email=admin@example.com
+      dockerfile: Dockerfile_migration
+      tags:
+        - "mydjangogirls_migration:latest"
+    volumes:
+      - "./db:/app/db"
+
+  mydjangogirls_start:
+    build:
+      context: .
+      args:
+        - USERNAME=101
+        - GROUPNAME=101
+      dockerfile: Dockerfile_start
+      tags:
+        - "mydjangogirls_start:latest"
+    ports:
+      - 8000:8000/tcp
+    volumes:
+      - "./db:/app/db"
+    depends_on:
+      mydjangogirls_migration:
+        condition: service_completed_successfully
+

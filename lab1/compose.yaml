@@ -8,7 +8,8 @@ services:
         - GROUP=101
       dockerfile: Dockerfile
       tags:
-        - "mynginx:250414-alpine3.21.3"
+        - "mynginx:1.27.3-alpine3.21.3"
+    image: mynginx:latest
     ports:
       - 8080:8080/tcp
     volumes:

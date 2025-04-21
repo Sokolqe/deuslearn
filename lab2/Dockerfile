@@ -38,6 +38,5 @@ VOLUME "/app/db"
 USER $UID
 
 #Run command
-ENTRYPOINT ["/bin/ash"]
-CMD ["init.sh"]
+CMD sh init.sh
 

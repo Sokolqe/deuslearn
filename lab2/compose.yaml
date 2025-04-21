@@ -4,30 +4,29 @@ services:
     build:
       context: .
       args:
-        - USERNAME=101
-        - GROUPNAME=101
+        - IMAGE=python:3.11-alpine3.21
+        - UID=101
+        - GID=101
+        - USERNAME=djangogirls
+        - GROUPNAME=djangogirls
         - user=admin
         - password=pass
         - email=admin@example.com
-      dockerfile: Dockerfile_migration
-      tags:
-        - "mydjangogirls_migration:latest"
+      dockerfile: Dockerfile
+      tags: 
+        - "mydjangogirls:latest"
+    pull_policy: build
+    image: mydjangogirls:latest
     volumes:
       - "./db:/app/db"
 
   mydjangogirls_start:
-    build:
-      context: .
-      args:
-        - USERNAME=101
-        - GROUPNAME=101
-      dockerfile: Dockerfile_start
-      tags:
-        - "mydjangogirls_start:latest"
+    image: mydjangogirls:latest
     ports:
       - 8000:8000/tcp
     volumes:
       - "./db:/app/db"
+    command: python3 manage.py runserver 0.0.0.0:8000
     depends_on:
       mydjangogirls_migration:
         condition: service_completed_successfully

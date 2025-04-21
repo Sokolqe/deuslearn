@@ -38,5 +38,5 @@ VOLUME "/app/db"
 USER $UID
 
 #Run command
-CMD sh init.sh
+CMD ["sh", "init.sh"]
 

@@ -18,14 +18,14 @@ services:
     pull_policy: build
     image: mydjangogirls:latest
     volumes:
-      - "./db:/app/db"
+      - "~/docker_volumes/lab2/db:/app/db"
 
   mydjangogirls_start:
     image: mydjangogirls:latest
     ports:
       - 8000:8000/tcp
     volumes:
-      - "./db:/app/db"
+      - "~/docker_volumes/lab2/db:/app/db"
     command: python3 manage.py runserver 0.0.0.0:8000
     depends_on:
       mydjangogirls_migration:

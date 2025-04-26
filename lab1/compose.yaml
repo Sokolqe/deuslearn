@@ -13,5 +13,5 @@ services:
     ports:
       - 8080:8080/tcp
     volumes:
-      - "./nginx/http.d:/etc/nginx/http.d"
-      - "./nginx/sites-enabled:/etc/nginx/sites-enabled"
+      - "~/docker_volumes/lab1/nginx/http.d:/etc/nginx/http.d"
+      - "~/docker_volumes/lab1/nginx/sites-enabled:/etc/nginx/sites-enabled"

@@ -7,16 +7,6 @@ ARG GID=101
 ARG USERNAME=djangogirls
 ARG GROUPNAME=djangogirls
 
-#Add environment variables for our app
-ARG user
-ARG email
-ARG password
-ARG file
-ENV user=admin
-ENV email=admin@example.com
-ENV password=pass
-ENV file=/app/db/db.sqlite3
-
 WORKDIR /app
 
 COPY --chown=$UID:$GID requirements.txt /app/

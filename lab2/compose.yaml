@@ -9,19 +9,19 @@ services:
         - GID=101
         - USERNAME=djangogirls
         - GROUPNAME=djangogirls
-        - user=admin
-        - password=pass
-        - email=admin@example.com
       dockerfile: Dockerfile
       tags: 
         - "mydjangogirls:python3.11-alpine3.21"
     pull_policy: build
     image: mydjangogirls:latest
+    env_file: ./djangogirls.env
     volumes:
       - "~/docker_volumes/lab2/db:/app/db"
 
   mydjangogirls_start:
     image: mydjangogirls:latest
+    env_file:
+      - ./djangogirls.env
     ports:
       - 8000:8000/tcp
     volumes:

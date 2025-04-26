@@ -1,11 +1,5 @@
 #! /bin/sh
 
-# User credentials
-#user=admin
-#email=admin@example.com
-#password=pass
-#file=db/db.sqlite3
-
 python3 manage.py migrate
 
 if [ $(echo "from django.contrib.auth.models import User; print(User.objects.filter(username='$user').exists())" | python3 manage.py shell) == True ]; then 

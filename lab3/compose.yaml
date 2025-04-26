@@ -23,7 +23,7 @@ services:
         - GID=101
         - USERNAME=djangogirls
         - GROUPNAME=djangogirls
-      dockerfile: Dockerfile
+      dockerfile: ./Dockerfile
       tags: 
         - "mydjangogirls-postgres:python3.11-alpine3.21"
     pull_policy: build
